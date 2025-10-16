@@ -1,0 +1,431 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* para que quede encima el contenido */
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.logo {
+  color: #e67e22;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Menú principal */
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.menu li {
+  position: relative;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  padding: 8px;
+  font-size: 16px;
+  position: relative;
+  transition: color 0.3s;
+}
+
+/* Línea animada debajo */
+.menu a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #e67e22;
+  transition: width 0.3s;
+}
+
+.menu a:hover {
+  color: #e67e22;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* Submenu */
+.submenu {
+  display: none;
+  position: absolute;
+  background: #111;
+  top: 100%;
+  left: 0;
+  min-width: 150px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.submenu li a {
+  display: block;
+  padding: 10px;
+}
+
+.menu li:hover .submenu {
+  display: block;
+}
+
+/* Hamburguesa */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  background: white;
+  height: 3px;
+  margin: 4px;
+  width: 25px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    justify-content: flex-start; /* primero alineamos todo a la izquierda */
+  }
+
+  .logo {
+    flex: 1; /* ocupa todo el espacio disponible */
+  }
+
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .menu {
+    top: 100%;
+    margin-top: 0;
+    display: none;
+    flex-direction: column;
+    background: #000;
+    width: 100%;
+    padding: 1rem 0;
+    position: absolute;
+    top: 100%; /* justo debajo del nav */
+    left: 0;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .submenu {
+    position: static;
+  }
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: black;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.8);
+}
+
+.hero-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin: 15px 0;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin: 15px 0;
+}
+
+/* Flecha scroll */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero {
+    height: 90vh;
+  }
+}
+
+.scroll-circle {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid white;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+  animation: bounce 1.5s infinite;
+  margin: 25px 0;
+}
+
+.scroll-circle:hover {
+  background-color: white;
+  color: #e67e22;
+  transform: scale(1.2);
+}
+
+/* Sección contenido */
+.contenido {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+}
+
+.contenido h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.contenido p {
+  font-size: 1.2rem;
+  margin-bottom: 60px;
+  color: #555;
+}
+
+/* Contenedor de tarjetas */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* responsive */
+}
+
+/* Tarjeta */
+.card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #666;
+  margin: 10px 0 20px;
+}
+
+/* Botón */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #e67e22;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover tarjeta */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover .btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer estilos */
+footer {
+  background-color: #151515;
+  color: #f2f2f2;
+  padding: 3rem 1rem 1rem;
+  font-size: 0.95rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column {
+  flex: 1 1 200px;
+}
+
+.footer-column h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #e67e22;
+}
+
+.footer-column h4 {
+  margin-bottom: 1rem;
+  color: #e67e22;
+}
+
+.footer-tagline {
+  text-align: left;
+  max-width: 180px;
+  margin: 0 left;
+  line-height: 1.4;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+  color: #f2f2f2;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: #e67e22;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  margin-right: 0.8rem;
+  text-decoration: none;
+  color: #f2f2f2;
+  transition: transform 0.2s, color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #e67e22;
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  border-top: 1px solid #555;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  color: #bbb;
+}
+
+/* From Uiverse.io by MarcLazz */
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.button {
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #2d2e32;
+  border: 2px solid #2d2e32;
+  transition: all 0.45s;
+}
+
+.button:hover {
+  transform: rotate(360deg);
+  transform-origin: center center;
+  background-color: #ffff;
+  color: #2d2e32;
+}
+
+.button:hover .btn-svg {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg)
+    brightness(103%) contrast(103%);
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
